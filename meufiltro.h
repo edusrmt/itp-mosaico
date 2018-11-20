@@ -9,6 +9,7 @@
 
 //declare aqui os seus widgets
 GtkWidget *widgetTamanhoLadrilho;
+GtkWidget *widgetLadrilhoAleatorio;
 
 GtkAdjustment *adjustment;
 
