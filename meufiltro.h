@@ -10,10 +10,13 @@
 //declare aqui os seus widgets
 GtkWidget *widgetTamanhoLadrilho;
 GtkWidget *widgetLadrilhoAleatorio;
+GtkWidget *widgetEspacamento;
 
-GtkAdjustment *adjustment;
+GtkAdjustment *adjustmentTamanhoLadrilho;
+GtkAdjustment *adjustmentEspacamento;
 
 Imagem meuFiltro(Imagem origem);
+Imagem criarImagemComBase (Imagem base, int tamanhoLadrilho, int espacamento);
 void inicializarWidgetsMeuFiltro();
 void adicionarWidgetsMeuFiltro(GtkWidget *container);
 
