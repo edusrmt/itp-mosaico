@@ -30,6 +30,20 @@ Imagem alocarImagemDimensao(int w, int h, int numCanais) {
 	return img;
 }
 
+Imagem alocarImagemPreenchida (int w, int h, int numCanais) {
+	Imagem img = alocarImagemDimensao(w, h, numCanais);
+
+	for (int y = 0; y < img.h; y++) {
+		for (int x = 0; x < img.w; x++) {
+			img.m[y][x][0] = 0;
+			img.m[y][x][1] = 255;
+			img.m[y][x][2] = 0;
+		}
+	}
+
+	return img;
+}
+
 void desalocarImagem(Imagem referencia) {
 	for(int i = 0; i < referencia.h; i++) {
 		for(int j = 0; j < referencia.w; j++) {
