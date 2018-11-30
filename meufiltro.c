@@ -36,11 +36,20 @@ Imagem meuFiltro(Imagem origem) {
 	int ladrilhosPorLinha = (int) origem.w / tamanhoLadrilho;
 	int ladrilhosPorColuna = (int) origem.h / tamanhoLadrilho;
 	int offset = ceil(sqrt(2 * pow(tamanhoLadrilho, 2))) / 2;
-
-	Imagem destino;	
+	Imagem destino;
 
 	if(gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(widgetLadrilhoAleatorio))) {
-		// Poisson Disc Sampling
+		destino = alocarImagemPreenchida(origem.w + 2 * offset, origem.h + 2 * offset, origem.numCanais);
+		int quantidadeDeLadrilhos = ladrilhosPorLinha * ladrilhosPorColuna;
+		
+		for (int i = 0; i < quantidadeDeLadrilhos; i++) {
+			int x = rand() % origem.w;
+			int y = rand() % origem.h;
+
+			int angulo = anguloGradiente(origem, novaCoordenada(x, y));
+			printf("%d | %d\n", x, y);
+			destino = desenharLadrilho(destino, novaCoordenada(x + offset, y + offset), tamanhoLadrilho, angulo, origem.m[y][x][0], origem.m[y][x][1], origem.m[y][x][2]);
+		}
 	} else {		
 		if (espacamento == 0) {
 			destino = alocarImagemPreenchida(ladrilhosPorLinha * tamanhoLadrilho + 2 * offset, ladrilhosPorColuna * tamanhoLadrilho + 2 * offset, origem.numCanais);
@@ -53,9 +62,8 @@ Imagem meuFiltro(Imagem origem) {
 
 					int angulo = anguloGradiente(origem, novaCoordenada(x - offset, y - offset));
 					destino = desenharLadrilho(destino, novaCoordenada(x, y), tamanhoLadrilho, angulo, origem.m[y - offset][x - offset][0], origem.m[y - offset][x - offset][1], origem.m[y - offset][x - offset][2]);
-				//	break;
 				}
-				//break;
+				
 			}
 		} else {
 			Imagem base = alocarImagemDimensao(ladrilhosPorLinha, ladrilhosPorColuna, origem.numCanais);
@@ -104,7 +112,6 @@ Imagem desenharLadrilho (Imagem imagem, Coordenada centro, int tamanhoLadrilho, 
 	for (int y = p2.y; y <= p3.y; y++) {
 		for (int x = p1.x; x <= p4.x; x++) {
 			if (contidoNoLadrilho(novaCoordenada(x, y), p1, p2, p3, p4)) {
-//				printf("(%d, %d)\n", x, y);
 				imagem.m[y][x][0] = r;
 				imagem.m[y][x][1] = g;
 				imagem.m[y][x][2] = b;

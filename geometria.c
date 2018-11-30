@@ -35,8 +35,10 @@ int anguloGradiente (Imagem imagem, Coordenada centro) {
 
 	for (int j = -1; j <= 1; j++) {
     	for (int i = -1; i <= 1; i++) {
-    		gX += i * escalaCinzenta(imagem.m[centro.y + j][centro.x + i][0], imagem.m[centro.y + j][centro.x + i][1], imagem.m[centro.y + j][centro.x + i][2]); 
-    		gY += j * escalaCinzenta(imagem.m[centro.y + j][centro.x + i][0], imagem.m[centro.y + j][centro.x + i][1], imagem.m[centro.y + j][centro.x + i][2]);
+    		if (centro.x + i >= 0 && centro.y + j >= 0 && centro.x + i < imagem.w && centro.y + j < imagem.h) {
+    			gX += i * escalaCinzenta(imagem.m[centro.y + j][centro.x + i][0], imagem.m[centro.y + j][centro.x + i][1], imagem.m[centro.y + j][centro.x + i][2]); 
+    			gY += j * escalaCinzenta(imagem.m[centro.y + j][centro.x + i][0], imagem.m[centro.y + j][centro.x + i][1], imagem.m[centro.y + j][centro.x + i][2]);
+    		}
     	}
 	}
 

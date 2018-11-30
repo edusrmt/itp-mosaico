@@ -9,6 +9,12 @@
 #include "imagem.h"
 #include "geometria.h"
 
+typedef struct ListaCoordenadas
+{
+	Coordenada *lista;
+	int tamanho;
+} ListaCoordenadas;
+
 //declare aqui os seus widgets
 GtkWidget *widgetTamanhoLadrilho;
 GtkWidget *widgetLadrilhoAleatorio;
@@ -32,5 +38,3 @@ Imagem desenharLadrilho (Imagem imagemAtual, Coordenada centro, int tamanhoLadri
 void funcaoAplicar(GtkWidget *widget, gpointer data);
 
 #endif
-
-
