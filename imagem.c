@@ -30,14 +30,14 @@ Imagem alocarImagemDimensao(int w, int h, int numCanais) {
 	return img;
 }
 
-Imagem alocarImagemPreenchida (int w, int h, int numCanais) {
+Imagem alocarImagemPreenchida (int w, int h, int numCanais, GdkRGBA cor) {
 	Imagem img = alocarImagemDimensao(w, h, numCanais);
 
 	for (int y = 0; y < img.h; y++) {
 		for (int x = 0; x < img.w; x++) {
-			img.m[y][x][0] = 0;
-			img.m[y][x][1] = 255;
-			img.m[y][x][2] = 0;
+			img.m[y][x][0] = floor(cor.red * 255);
+			img.m[y][x][1] = floor(cor.green * 255);
+			img.m[y][x][2] = floor(cor.blue * 255);
 		}
 	}
 
